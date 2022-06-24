@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +28,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 require __DIR__.'/auth.php';
