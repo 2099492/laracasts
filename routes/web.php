@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 require __DIR__.'/auth.php';

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class PostFactory extends Factory
             'slug' => $this->faker->slug,
             'excerpt' => $this->faker->text(50),
             'body' => $this->faker->text(150),
+            'category_id' => Category::factory()->create()->id,
         ];
     }
 }
