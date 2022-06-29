@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         return view('categories.show', [
-            'category' => $category->with('posts')->findOrFail($category->id),
+            'category' => $category->load('posts.author'),
         ]);
     }
 }

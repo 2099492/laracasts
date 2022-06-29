@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,5 +35,9 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/authors/{author:username}', function (User $author) {
+    return view('authors.show', ['posts' => $author->posts->load('author', 'category')]);
+})->name('authors.show');
 
 require __DIR__.'/auth.php';

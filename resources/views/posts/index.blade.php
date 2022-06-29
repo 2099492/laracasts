@@ -5,7 +5,7 @@
             <h1>{{ $post->title }}</h1>
         </a>
 
-        <a href="{{ route('categories.show', $post->category->slug) }}"><p>{{ $post->category->name }}</p></a>
+        By: <a href="{{ route('authors.show', $post->author->username) }}"><p>{{ $post->author->name }}</p></a> <a href="{{ route('categories.show', $post->category->slug) }}"><p>{{ $post->category->name }}</p></a>
 
         <div>
             {{ $post->excerpt }}
